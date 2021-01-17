@@ -1,0 +1,4 @@
+/release/
+/drone-docker*
+
+coverage.out
