@@ -14,7 +14,7 @@ Drone plugin to build multiarch Docker images.
 
 ## Docker Tags
 
-Tags are following the main Docker version e.g. `19`, the second part is reflecting the plugin "version". A full example would be `19.5`.
+Tags are following the main Docker version e.g. `19`, the second part is reflecting the plugin "version". A full example would be `19.0.5`.
 
 ## Build
 
