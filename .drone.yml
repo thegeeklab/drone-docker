@@ -286,6 +286,92 @@ depends_on:
 
 ---
 kind: pipeline
+name: build-container-arm
+
+platform:
+  os: linux
+  arch: arm
+
+steps:
+- name: build
+  image: golang:1.15
+  commands:
+  - "[ -z \"${DRONE_TAG}\" ] && BUILD_VERSION=${DRONE_COMMIT_SHA:0:8} || BUILD_VERSION=${DRONE_TAG##v}"
+  - go build -v -ldflags "-X main.version=$BUILD_VERSION" -a -tags netgo -o release/arm/drone-docker ./cmd/drone-docker
+
+- name: dryrun
+  image: plugins/docker:19
+  settings:
+    config:
+      from_secret: docker_config
+    dockerfile: docker/Dockerfile.arm
+    dry_run: true
+    password:
+      from_secret: docker_password
+    repo: thegeeklab/${DRONE_REPO_NAME}
+    username:
+      from_secret: docker_username
+  when:
+    ref:
+    - refs/pull/**
+  depends_on:
+  - build
+
+- name: publish-dockerhub
+  image: plugins/docker:19
+  settings:
+    auto_tag: true
+    auto_tag_suffix: arm
+    config:
+      from_secret: docker_config
+    dockerfile: docker/Dockerfile.arm
+    password:
+      from_secret: docker_password
+    repo: thegeeklab/${DRONE_REPO_NAME}
+    username:
+      from_secret: docker_username
+  when:
+    ref:
+    - refs/heads/main
+    - refs/tags/**
+  depends_on:
+  - dryrun
+
+- name: publish-quay
+  image: plugins/docker:19
+  settings:
+    auto_tag: true
+    auto_tag_suffix: arm
+    config:
+      from_secret: docker_config
+    dockerfile: docker/Dockerfile.arm
+    password:
+      from_secret: quay_password
+    registry: quay.io
+    repo: quay.io/thegeeklab/${DRONE_REPO_NAME}
+    username:
+      from_secret: quay_username
+  when:
+    ref:
+    - refs/heads/main
+    - refs/tags/**
+  depends_on:
+  - dryrun
+
+image_pull_secrets:
+- docker_config
+
+trigger:
+  ref:
+  - refs/heads/main
+  - refs/tags/**
+  - refs/pull/**
+
+depends_on:
+- test
+
+---
+kind: pipeline
 name: notifications
 
 platform:
@@ -378,9 +464,10 @@ depends_on:
 - build-binaries
 - build-container-amd64
 - build-container-arm64
+- build-container-arm
 
 ---
 kind: signature
-hmac: 1a37c9d3891efb7387c814f247712b53573e6b5f0c830b8f1eda92a29ccd310c
+hmac: 1f404e18b6240f430bcac2ed960b876d4fe9cccaa896ad2c009db385ed9dbeb1
 
 ...
