@@ -2,7 +2,7 @@
 
 Drone plugin to build multiarch Docker images
 
-[![Build Status](https://img.shields.io/drone/build/thegeeklab/drone-docker?logo=drone)](https://cloud.drone.io/thegeeklab/drone-docker)
+[![Build Status](https://img.shields.io/drone/build/thegeeklab/drone-docker?logo=drone)](https://drone.thegeeklab.de/thegeeklab/drone-docker)
 [![Docker Hub](https://img.shields.io/badge/dockerhub-latest-blue.svg?logo=docker&logoColor=white)](https://hub.docker.com/r/thegeeklab/drone-docker)
 [![Quay.io](https://img.shields.io/badge/quay-latest-blue.svg?logo=docker&logoColor=white)](https://quay.io/repository/thegeeklab/drone-docker)
 [![Go Report Card](https://goreportcard.com/badge/github.com/thegeeklab/drone-docker)](https://goreportcard.com/report/github.com/thegeeklab/drone-docker)
