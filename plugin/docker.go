@@ -5,6 +5,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	"time"
 
 	"github.com/urfave/cli/v2"
 )
@@ -60,6 +61,10 @@ func commandBuild(build Build) *exec.Cmd {
 		"-t", build.Name,
 	}
 
+	defaultBuildArgs := []string{
+		fmt.Sprintf("DOCKER_IMAGE_CREATED=%s", time.Now().Format(time.RFC3339)),
+	}
+
 	args = append(args, build.Context)
 	if build.Squash {
 		args = append(args, "--squash")
@@ -79,7 +84,7 @@ func commandBuild(build Build) *exec.Cmd {
 	for _, arg := range build.ArgsEnv.Value() {
 		addProxyValue(&build, arg)
 	}
-	for _, arg := range build.Args.Value() {
+	for _, arg := range append(defaultBuildArgs, build.Args.Value()...) {
 		args = append(args, "--build-arg", arg)
 	}
 	for _, host := range build.AddHost.Value() {
