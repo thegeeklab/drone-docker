@@ -1,12 +1,11 @@
 # Changelog
 
-## v19.03.1 (2021-01-17)
+## v19.03.2 (2021-01-22)
 
-### Fixes
+### New Features
 
-- add custom seccomp profile using action `SCMP_ACT_TRACE` instead of `SCMP_ACT_ERRNO`
+- set DOCKER_IMAGE_CREATED as build-arg
 
 ### Others
 
-- **devel**: refactor code to refelct plugins boilerplate
-- **deps**: pin docker digests
+- **deps**: update dependencies
