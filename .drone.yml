@@ -66,8 +66,9 @@ steps:
   commands:
   - "[ -z \"${DRONE_TAG}\" ] && BUILD_VERSION=${DRONE_COMMIT_SHA:0:8} || BUILD_VERSION=${DRONE_TAG##v}"
   - mkdir -p release/
-  - cd cmd/drone-docker && xgo -ldflags "-s -w -X main.version=$BUILD_VERSION" -tags netgo -targets 'linux/amd64,linux/arm-6,linux/arm64' -out drone-docker .
+  - cd cmd/drone-docker && xgo -ldflags "-s -w -X main.version=$BUILD_VERSION" -tags netgo -targets 'linux/amd64,linux/arm-6,linux/arm-7,linux/arm64' -out drone-docker .
   - mv /build/* /drone/src/release/
+  - ls -l /drone/src/release/
 
 - name: executable
   image: alpine
@@ -468,6 +469,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: 1f404e18b6240f430bcac2ed960b876d4fe9cccaa896ad2c009db385ed9dbeb1
+hmac: a4e6dd2ab6bcc3383abf1b8cce73ca58834ecb0709a01db887f8cd09ad16050e
 
 ...
