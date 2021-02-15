@@ -87,6 +87,13 @@ steps:
   commands:
   - cd release/ && sha256sum * > sha256sum.txt
 
+- name: changelog
+  image: thegeeklab/git-chglog
+  commands:
+  - git fetch -tq
+  - git-chglog --no-color --no-emoji ${DRONE_TAG:---next-tag unreleased unreleased}
+  - git-chglog --no-color --no-emoji -o CHANGELOG.md ${DRONE_TAG:---next-tag unreleased unreleased}
+
 - name: publish
   image: plugins/github-release
   settings:
@@ -469,6 +476,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: a4e6dd2ab6bcc3383abf1b8cce73ca58834ecb0709a01db887f8cd09ad16050e
+hmac: 1c7dc109e0955ae8d3e01358642eff449ceb23ce888d35dfed3206060af11db9
 
 ...
