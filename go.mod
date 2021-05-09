@@ -1,6 +1,6 @@
 module github.com/thegeeklab/drone-docker
 
-go 1.15
+go 1.16
 
 require (
 	github.com/coreos/go-semver v0.3.0
