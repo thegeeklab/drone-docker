@@ -60,8 +60,8 @@ mirror
 storage_driver
 : sets the docker daemon storage driver
 
-storage_path (default `/var/lib/docker`)
-: sets the docker daemon storage path
+storage_path
+: sets the docker daemon storage path (default `/var/lib/docker`)
 
 bip
 : allows the docker daemon to bride ip address
@@ -90,14 +90,14 @@ debug "docker_launch_debug
 daemon_off
 : disables the startup of the docker daemon
 
-dockerfile (default `./Dockerfile`)
-: sets dockerfile to use for the image build
+dockerfile
+: sets dockerfile to use for the image build (default `./Dockerfile`)
 
-context (default `./`)
-: sets the path of the build context to use
+context
+: sets the path of the build context to use (default `./`)
 
-tags (default `latest`)
-: sets repository tags to use for the image; tags can also be loaded from a `.tags` file
+tags
+: sets repository tags to use for the image; tags can also be loaded from a `.tags` file (default `latest`)
 
 auto_tag
 : generates tag names automatically based on git branch and git tag
@@ -120,8 +120,8 @@ target
 cache_from
 : sets images to consider as cache sources
 
-pull_image (default `true`)
-: enforces to pull base image at build time
+pull_image
+: enforces to pull base image at build time (default `true`)
 
 compress
 : enables compression og the build context using gzip
@@ -129,8 +129,8 @@ compress
 repo
 : sets repository name for the image
 
-registry (default `https://index.docker.io/v1/`)
-: sets docker registry to authenticate with
+registry
+: sets docker registry to authenticate with (default `https://index.docker.io/v1/`)
 
 username
 : sets username to authenticates with
@@ -144,8 +144,8 @@ email
 config
 : sets content of the docker daemon json config
 
-purge (default `true`)
-: enables cleanup of the docker environment at the end of a build
+purge
+: enables cleanup of the docker environment at the end of a build (default `true`)
 
 no_cache
 : disables the usage of cached intermediate containers
