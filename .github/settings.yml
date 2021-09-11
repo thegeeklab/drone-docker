@@ -1,6 +1,7 @@
 repository:
   name: drone-docker
   description: Drone plugin to build multiarch Docker images
+  homepage: https://drone-plugin-index.geekdocs.de/plugins/drone-docker
   topics: drone, drone-plugin
 
   private: false
