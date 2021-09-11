@@ -29,7 +29,7 @@ docker build --file docker/Dockerfile.amd64 --tag thegeeklab/drone-docker .
 
 ## Usage
 
-{{< hint [warning] >}}
+{{< hint warning >}}
 **Note**\
 Be aware that the this plugin requires privileged capabilities, otherwise the
 integrated Docker daemon is not able to start.
