@@ -9,6 +9,8 @@ title: drone-docker
 [![Source: GitHub](https://img.shields.io/badge/source-github-blue.svg?logo=github&logoColor=white)](https://github.com/thegeeklab/drone-docker)
 [![License: MIT](https://img.shields.io/github/license/thegeeklab/drone-docker)](https://github.com/thegeeklab/drone-docker/blob/main/LICENSE)
 
+Drone plugin to build and publish multiarch Docker images.
+
 <!-- prettier-ignore-start -->
 <!-- spellchecker-disable -->
 {{< toc >}}
