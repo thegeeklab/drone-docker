@@ -5,7 +5,6 @@ title: drone-docker
 [![Build Status](https://img.shields.io/drone/build/thegeeklab/drone-docker?logo=drone&server=https%3A%2F%2Fdrone.thegeeklab.de)](https://drone.thegeeklab.de/thegeeklab/drone-docker)
 [![Docker Hub](https://img.shields.io/badge/dockerhub-latest-blue.svg?logo=docker&logoColor=white)](https://hub.docker.com/r/thegeeklab/drone-docker)
 [![Quay.io](https://img.shields.io/badge/quay-latest-blue.svg?logo=docker&logoColor=white)](https://quay.io/repository/thegeeklab/drone-docker)
-[![Go Report Card](https://goreportcard.com/badge/github.com/thegeeklab/drone-docker)](https://goreportcard.com/report/github.com/thegeeklab/drone-docker)
 [![GitHub contributors](https://img.shields.io/github/contributors/thegeeklab/drone-docker)](https://github.com/thegeeklab/drone-docker/graphs/contributors)
 [![Source: GitHub](https://img.shields.io/badge/source-github-blue.svg?logo=github&logoColor=white)](https://github.com/thegeeklab/drone-docker)
 [![License: MIT](https://img.shields.io/github/license/thegeeklab/drone-docker)](https://github.com/thegeeklab/drone-docker/blob/main/LICENSE)
@@ -16,7 +15,7 @@ title: drone-docker
 <!-- spellchecker-enable -->
 <!-- prettier-ignore-end -->
 
-## Docker Tags
+## Versioning
 
 Tags are following the main Docker version e.g. `19.03`, the second part is reflecting the plugin "version". A full example would be `19.03.5`.
 
@@ -58,7 +57,7 @@ docker run --rm \
   thegeeklab/drone-docker --dry-run
 ```
 
-## Parameters
+### Parameters
 
 dry_run
 : disables docker push
