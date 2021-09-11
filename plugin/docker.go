@@ -66,9 +66,6 @@ func commandBuild(build Build) *exec.Cmd {
 	}
 
 	args = append(args, build.Context)
-	if build.Squash {
-		args = append(args, "--squash")
-	}
 	if build.Compress {
 		args = append(args, "--compress")
 	}
