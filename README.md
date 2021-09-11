@@ -10,7 +10,7 @@ Drone plugin to build multiarch Docker images
 [![Source: GitHub](https://img.shields.io/badge/source-github-blue.svg?logo=github&logoColor=white)](https://github.com/thegeeklab/drone-docker)
 [![License: MIT](https://img.shields.io/github/license/thegeeklab/drone-docker)](https://github.com/thegeeklab/drone-docker/blob/main/LICENSE)
 
-Drone plugin to build multiarch Docker images. This plugin is a fork of [drone-plugins/drone-docker](https://github.com/drone-plugins/drone-docker). You can find the full documentation at You can find the full documentation at [https://drone-plugins.geekdocs.de](https://drone-plugins.geekdocs.de).
+Drone plugin to build multiarch Docker images. This plugin is a fork of [drone-plugins/drone-docker](https://github.com/drone-plugins/drone-docker). You can find the full documentation at You can find the full documentation at [https://drone-plugin-index.geekdocs.de](https://drone-plugin-index.geekdocs.de/plugins/drone-docker).
 
 ## Docker Tags
 
