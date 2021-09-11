@@ -12,7 +12,7 @@ Drone plugin to build multiarch Docker images
 
 Drone plugin to build multiarch Docker images. This plugin is a fork of [drone-plugins/drone-docker](https://github.com/drone-plugins/drone-docker). You can find the full documentation at You can find the full documentation at [https://drone-plugin-index.geekdocs.de](https://drone-plugin-index.geekdocs.de/plugins/drone-docker).
 
-## Docker Tags
+## Versioning
 
 Tags are following the main Docker version e.g. `19.03`, the second part is reflecting the plugin "version". A full example would be `19.03.5`.
 
