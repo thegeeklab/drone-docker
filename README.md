@@ -8,7 +8,7 @@ Drone plugin to build multiarch Docker images
 [![Go Report Card](https://goreportcard.com/badge/github.com/thegeeklab/drone-docker)](https://goreportcard.com/report/github.com/thegeeklab/drone-docker)
 [![GitHub contributors](https://img.shields.io/github/contributors/thegeeklab/drone-docker)](https://github.com/thegeeklab/drone-docker/graphs/contributors)
 [![Source: GitHub](https://img.shields.io/badge/source-github-blue.svg?logo=github&logoColor=white)](https://github.com/thegeeklab/drone-docker)
-[![License: MIT](https://img.shields.io/github/license/thegeeklab/drone-docker)](https://github.com/thegeeklab/drone-docker/blob/main/LICENSE)
+[![License: Apache-2.0](https://img.shields.io/github/license/thegeeklab/drone-docker)](https://github.com/thegeeklab/drone-docker/blob/main/LICENSE)
 
 Drone plugin to build multiarch Docker images. This plugin is a fork of [drone-plugins/drone-docker](https://github.com/drone-plugins/drone-docker). You can find the full documentation at You can find the full documentation at [https://drone-plugin-index.geekdocs.de](https://drone-plugin-index.geekdocs.de/plugins/drone-docker).
 
@@ -23,4 +23,4 @@ please see the [instructions](https://github.com/thegeeklab/drone-docker/blob/ma
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/thegeeklab/drone-docker/blob/main/LICENSE) file for details.
+This project is licensed under the Apache-2.0 License - see the [LICENSE](https://github.com/thegeeklab/drone-docker/blob/main/LICENSE) file for details.
