@@ -19,7 +19,7 @@ Drone plugin to build and publish multiarch Docker images.
 
 ## Versioning
 
-Tags are following the main Docker version e.g. `19.03`, the second part is reflecting the plugin "version". A full example would be `19.03.5`.
+The tags follow the major version of Docker, e.g. `19`, the minor and patch part reflects the "version" of the plugin. A full example would be `19.6.5`. Minor versions may introduce breaking changes, while patch versions may be considered non-breaking.
 
 ## Build
 
