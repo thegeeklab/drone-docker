@@ -31,7 +31,7 @@ export GOARCH=amd64
 export CGO_ENABLED=0
 export GO111MODULE=on
 
-go build -v -a -tags netgo -o release/drone-docker
+go build -v -a -tags netgo -o release/amd64/drone-docker ./cmd/drone-docker/
 ```
 
 Build the Docker image with the following command:
