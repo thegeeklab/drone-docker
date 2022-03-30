@@ -8,7 +8,7 @@ platform:
 
 steps:
   - name: staticcheck
-    image: golang:1.16
+    image: golang:1.18
     commands:
       - go run honnef.co/go/tools/cmd/staticcheck ./...
     volumes:
@@ -16,7 +16,7 @@ steps:
         path: /go
 
   - name: lint
-    image: golang:1.16
+    image: golang:1.18
     commands:
       - go run golang.org/x/lint/golint -set_exit_status ./...
     volumes:
@@ -24,7 +24,7 @@ steps:
         path: /go
 
   - name: vet
-    image: golang:1.16
+    image: golang:1.18
     commands:
       - go vet ./...
     volumes:
@@ -32,7 +32,7 @@ steps:
         path: /go
 
   - name: test
-    image: golang:1.16
+    image: golang:1.18
     commands:
       - go test -cover ./...
     volumes:
@@ -62,7 +62,7 @@ platform:
 
 steps:
   - name: build
-    image: techknowlogick/xgo:go-1.16.x
+    image: techknowlogick/xgo:go-1.18.x
     commands:
       - "[ -z \"${DRONE_TAG}\" ] && BUILD_VERSION=${DRONE_COMMIT_SHA:0:8} || BUILD_VERSION=${DRONE_TAG##v}"
       - mkdir -p release/
@@ -135,7 +135,7 @@ platform:
 
 steps:
   - name: build
-    image: golang:1.16
+    image: golang:1.18
     commands:
       - "[ -z \"${DRONE_TAG}\" ] && BUILD_VERSION=${DRONE_COMMIT_SHA:0:8} || BUILD_VERSION=${DRONE_TAG##v}"
       - go build -v -ldflags "-X main.version=$BUILD_VERSION" -a -tags netgo -o release/amd64/drone-docker ./cmd/drone-docker
@@ -221,7 +221,7 @@ platform:
 
 steps:
   - name: build
-    image: golang:1.16
+    image: golang:1.18
     commands:
       - "[ -z \"${DRONE_TAG}\" ] && BUILD_VERSION=${DRONE_COMMIT_SHA:0:8} || BUILD_VERSION=${DRONE_TAG##v}"
       - go build -v -ldflags "-X main.version=$BUILD_VERSION" -a -tags netgo -o release/arm64/drone-docker ./cmd/drone-docker
@@ -307,7 +307,7 @@ platform:
 
 steps:
   - name: build
-    image: golang:1.16
+    image: golang:1.18
     commands:
       - "[ -z \"${DRONE_TAG}\" ] && BUILD_VERSION=${DRONE_COMMIT_SHA:0:8} || BUILD_VERSION=${DRONE_TAG##v}"
       - go build -v -ldflags "-X main.version=$BUILD_VERSION" -a -tags netgo -o release/arm/drone-docker ./cmd/drone-docker
@@ -529,6 +529,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: 1cd8f1935a8bf453d14aaa89f0cf90ac7646405547ba0c873fedef99d7256d05
+hmac: db76ecc04bcecfd0bb265ed1bb5aba33a805c5977fa84e5d158eea6abec4aebc
 
 ...
