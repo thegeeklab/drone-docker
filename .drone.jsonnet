@@ -1,6 +1,5 @@
 local PipelineTest = {
   kind: 'pipeline',
-  image_pull_secrets: ['docker_config'],
   name: 'test',
   platform: {
     os: 'linux',
@@ -61,7 +60,6 @@ local PipelineTest = {
 
 local PipelineBuildBinaries = {
   kind: 'pipeline',
-  image_pull_secrets: ['docker_config'],
   name: 'build-binaries',
   platform: {
     os: 'linux',
@@ -79,7 +77,7 @@ local PipelineBuildBinaries = {
       name: 'executable',
       image: 'alpine',
       commands: [
-        '$(find dist/ -executable -type f | grep drone-docker-linux-amd64) --help',
+        '$(find dist/ -executable -type f -iname ${DRONE_REPO_NAME}-linux-amd64) --help',
       ],
     },
     {
@@ -127,7 +125,6 @@ local PipelineBuildBinaries = {
 
 local PipelineBuildContainer(arch='amd64') = {
   kind: 'pipeline',
-  image_pull_secrets: ['docker_config'],
   name: 'build-container-' + arch,
   platform: {
     os: 'linux',
@@ -258,7 +255,6 @@ local PipelineDocs = {
 
 local PipelineNotifications = {
   kind: 'pipeline',
-  image_pull_secrets: ['docker_config'],
   name: 'notifications',
   platform: {
     os: 'linux',

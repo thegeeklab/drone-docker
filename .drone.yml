@@ -35,9 +35,6 @@ volumes:
   - name: godeps
     temp: {}
 
-image_pull_secrets:
-  - docker_config
-
 trigger:
   ref:
     - refs/heads/main
@@ -61,7 +58,7 @@ steps:
   - name: executable
     image: alpine
     commands:
-      - $(find dist/ -executable -type f | grep drone-docker-linux-amd64) --help
+      - $(find dist/ -executable -type f -iname ${DRONE_REPO_NAME}-linux-amd64) --help
 
   - name: changelog-generate
     image: thegeeklab/git-chglog
@@ -88,9 +85,6 @@ steps:
     when:
       ref:
         - refs/tags/**
-
-image_pull_secrets:
-  - docker_config
 
 trigger:
   ref:
@@ -174,9 +168,6 @@ steps:
     depends_on:
       - dryrun
 
-image_pull_secrets:
-  - docker_config
-
 trigger:
   ref:
     - refs/heads/main
@@ -259,9 +250,6 @@ steps:
     depends_on:
       - dryrun
 
-image_pull_secrets:
-  - docker_config
-
 trigger:
   ref:
     - refs/heads/main
@@ -343,9 +331,6 @@ steps:
         - refs/tags/**
     depends_on:
       - dryrun
-
-image_pull_secrets:
-  - docker_config
 
 trigger:
   ref:
@@ -486,9 +471,6 @@ steps:
         - success
         - failure
 
-image_pull_secrets:
-  - docker_config
-
 trigger:
   ref:
     - refs/heads/main
@@ -502,6 +484,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: 9ee9ec07028e26d74e30bb239266b01dd105621178225d50bf2a214712d816e9
+hmac: 04cbe3e2b04cabcdb331f8dbba48337bb365ed4b6fd2f122eed3f4a7c81160d2
 
 ...
