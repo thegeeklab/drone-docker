@@ -7,26 +7,10 @@ platform:
   arch: amd64
 
 steps:
-  - name: staticcheck
-    image: golang:1.18
-    commands:
-      - go run honnef.co/go/tools/cmd/staticcheck ./...
-    volumes:
-      - name: gopath
-        path: /go
-
   - name: lint
     image: golang:1.18
     commands:
-      - go run golang.org/x/lint/golint -set_exit_status ./...
-    volumes:
-      - name: gopath
-        path: /go
-
-  - name: vet
-    image: golang:1.18
-    commands:
-      - go vet ./...
+      - make lint
     volumes:
       - name: gopath
         path: /go
@@ -34,7 +18,7 @@ steps:
   - name: test
     image: golang:1.18
     commands:
-      - go test -cover ./...
+      - make test
     volumes:
       - name: gopath
         path: /go
@@ -64,28 +48,12 @@ steps:
   - name: build
     image: techknowlogick/xgo:go-1.18.x
     commands:
-      - "[ -z \"${DRONE_TAG}\" ] && BUILD_VERSION=${DRONE_COMMIT_SHA:0:8} || BUILD_VERSION=${DRONE_TAG##v}"
-      - mkdir -p release/
-      - cd cmd/drone-docker && xgo -ldflags "-s -w -X main.version=$BUILD_VERSION" -tags netgo -targets 'linux/amd64,linux/arm-6,linux/arm-7,linux/arm64' -out drone-docker .
-      - mv /build/* /drone/src/release/
-      - ls -l /drone/src/release/
+      - make release
 
   - name: executable
     image: alpine
     commands:
-      - $(find release/ -executable -type f | grep drone-docker-linux-amd64) --help
-
-  - name: compress
-    image: alpine
-    commands:
-      - apk add upx
-      - find release/ -maxdepth 1 -executable -type f -exec upx {} \;
-      - ls -lh release/
-
-  - name: checksum
-    image: alpine
-    commands:
-      - cd release/ && sha256sum * > sha256sum.txt
+      - $(find dist/ -executable -type f | grep drone-docker-linux-amd64) --help
 
   - name: changelog-generate
     image: thegeeklab/git-chglog
@@ -105,7 +73,7 @@ steps:
       api_key:
         from_secret: github_token
       files:
-        - release/*
+        - dist/*
       note: CHANGELOG.md
       overwrite: true
       title: ${DRONE_TAG}
@@ -137,8 +105,7 @@ steps:
   - name: build
     image: golang:1.18
     commands:
-      - "[ -z \"${DRONE_TAG}\" ] && BUILD_VERSION=${DRONE_COMMIT_SHA:0:8} || BUILD_VERSION=${DRONE_TAG##v}"
-      - go build -v -ldflags "-X main.version=$BUILD_VERSION" -a -tags netgo -o release/amd64/drone-docker ./cmd/drone-docker
+      - make build
 
   - name: dryrun
     image: plugins/docker:19
@@ -223,8 +190,7 @@ steps:
   - name: build
     image: golang:1.18
     commands:
-      - "[ -z \"${DRONE_TAG}\" ] && BUILD_VERSION=${DRONE_COMMIT_SHA:0:8} || BUILD_VERSION=${DRONE_TAG##v}"
-      - go build -v -ldflags "-X main.version=$BUILD_VERSION" -a -tags netgo -o release/arm64/drone-docker ./cmd/drone-docker
+      - make build
 
   - name: dryrun
     image: plugins/docker:19
@@ -309,8 +275,7 @@ steps:
   - name: build
     image: golang:1.18
     commands:
-      - "[ -z \"${DRONE_TAG}\" ] && BUILD_VERSION=${DRONE_COMMIT_SHA:0:8} || BUILD_VERSION=${DRONE_TAG##v}"
-      - go build -v -ldflags "-X main.version=$BUILD_VERSION" -a -tags netgo -o release/arm/drone-docker ./cmd/drone-docker
+      - make build
 
   - name: dryrun
     image: plugins/docker:19
@@ -529,6 +494,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: db76ecc04bcecfd0bb265ed1bb5aba33a805c5977fa84e5d158eea6abec4aebc
+hmac: 7ddeed63bf4370b561d51d15252c3e4cffea890b6d409b1cb858716a93855c2b
 
 ...

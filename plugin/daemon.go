@@ -5,9 +5,11 @@ import (
 	"os"
 )
 
-const dockerExe = "/usr/local/bin/docker"
-const dockerdExe = "/usr/local/bin/dockerd"
-const dockerHome = "/root/.docker/"
+const (
+	dockerExe  = "/usr/local/bin/docker"
+	dockerdExe = "/usr/local/bin/dockerd"
+	dockerHome = "/root/.docker/"
+)
 
 func (p Plugin) startDaemon() {
 	cmd := commandDaemon(p.settings.Daemon)
@@ -20,6 +22,6 @@ func (p Plugin) startDaemon() {
 	}
 	go func() {
 		trace(cmd)
-		cmd.Run()
+		_ = cmd.Run()
 	}()
 }

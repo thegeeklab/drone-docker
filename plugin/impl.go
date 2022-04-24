@@ -125,10 +125,12 @@ func (p *Plugin) Execute() error {
 
 	// Create Auth Config File
 	if p.settings.Login.Config != "" {
-		os.MkdirAll(dockerHome, 0600)
+		if err := os.MkdirAll(dockerHome, 0o600); err != nil {
+			return fmt.Errorf("failed to create docker home: %s", err)
+		}
 
 		path := filepath.Join(dockerHome, "config.json")
-		err := ioutil.WriteFile(path, []byte(p.settings.Login.Config), 0600)
+		err := ioutil.WriteFile(path, []byte(p.settings.Login.Config), 0o600)
 		if err != nil {
 			return fmt.Errorf("error writing config.json: %s", err)
 		}
@@ -186,13 +188,15 @@ func (p *Plugin) Execute() error {
 		trace(cmd)
 
 		err := cmd.Run()
-		if err != nil && isCommandPull(cmd.Args) {
+
+		switch {
+		case err != nil && isCommandPull(cmd.Args):
 			fmt.Printf("Could not pull cache-from image %s. Ignoring...\n", cmd.Args[2])
-		} else if err != nil && isCommandPrune(cmd.Args) {
+		case err != nil && isCommandPrune(cmd.Args):
 			fmt.Printf("Could not prune system containers. Ignoring...\n")
-		} else if err != nil && isCommandRmi(cmd.Args) {
+		case err != nil && isCommandRmi(cmd.Args):
 			fmt.Printf("Could not remove image %s. Ignoring...\n", cmd.Args[2])
-		} else if err != nil {
+		default:
 			return err
 		}
 	}

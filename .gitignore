@@ -1,4 +1,4 @@
-/release/
+/dist/
 /drone-docker*
 
 coverage.out
