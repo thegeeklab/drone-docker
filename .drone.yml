@@ -7,12 +7,20 @@ platform:
   arch: amd64
 
 steps:
+  - name: deps
+    image: golang:1.18
+    commands:
+      - make deps
+    volumes:
+      - name: godeps
+        path: /go
+
   - name: lint
     image: golang:1.18
     commands:
       - make lint
     volumes:
-      - name: gopath
+      - name: godeps
         path: /go
 
   - name: test
@@ -20,11 +28,11 @@ steps:
     commands:
       - make test
     volumes:
-      - name: gopath
+      - name: godeps
         path: /go
 
 volumes:
-  - name: gopath
+  - name: godeps
     temp: {}
 
 image_pull_secrets:
@@ -48,7 +56,10 @@ steps:
   - name: build
     image: techknowlogick/xgo:go-1.18.x
     commands:
-      - make release
+      - pwd
+      - ls -l
+      - ls -l /source/
+      - make deps release
 
   - name: executable
     image: alpine
@@ -494,6 +505,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: 7ddeed63bf4370b561d51d15252c3e4cffea890b6d409b1cb858716a93855c2b
+hmac: 657f6b34a4d07fc739e2f2b1777802c51c88ca8a62f6569c593a6368eb853ea7
 
 ...

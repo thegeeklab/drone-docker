@@ -48,7 +48,7 @@ clean:
 	rm -rf $(DIST_DIRS)
 
 .PHONY: fmt
-fmt: | deps
+fmt:
 	$(GO) run $(GOFUMPT_PACKAGE) -extra -w $(SOURCES)
 
 .PHONY: golangci-lint
@@ -56,7 +56,7 @@ golangci-lint:
 	$(GO) run $(GOLANGCI_LINT_PACKAGE) run
 
 .PHONY: lint
-lint: deps golangci-lint
+lint: golangci-lint
 
 .PHONY: generate
 generate:
@@ -87,7 +87,7 @@ checksum:
 	ls -l $(CWD)/$(DIST)
 
 .PHONY: release
-release: deps xgo checksum
+release: xgo checksum
 
 .PHONY: deps
 deps:

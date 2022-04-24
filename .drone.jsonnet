@@ -8,6 +8,19 @@ local PipelineTest = {
   },
   steps: [
     {
+      name: 'deps',
+      image: 'golang:1.18',
+      commands: [
+        'make deps',
+      ],
+      volumes: [
+        {
+          name: 'godeps',
+          path: '/go',
+        },
+      ],
+    },
+    {
       name: 'lint',
       image: 'golang:1.18',
       commands: [
@@ -15,7 +28,7 @@ local PipelineTest = {
       ],
       volumes: [
         {
-          name: 'gopath',
+          name: 'godeps',
           path: '/go',
         },
       ],
@@ -28,7 +41,7 @@ local PipelineTest = {
       ],
       volumes: [
         {
-          name: 'gopath',
+          name: 'godeps',
           path: '/go',
         },
       ],
@@ -36,7 +49,7 @@ local PipelineTest = {
   ],
   volumes: [
     {
-      name: 'gopath',
+      name: 'godeps',
       temp: {},
     },
   ],
@@ -59,7 +72,10 @@ local PipelineBuildBinaries = {
       name: 'build',
       image: 'techknowlogick/xgo:go-1.18.x',
       commands: [
-        'make release',
+        'pwd',
+        'ls -l',
+        'ls -l /source/',
+        'make deps release',
       ],
     },
     {
