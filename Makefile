@@ -8,7 +8,6 @@ EXECUTABLE := drone-docker
 DIST := dist
 DIST_DIRS := $(DIST)
 IMPORT := github.com/thegeeklab/$(EXECUTABLE)
-export GO111MODULE=on
 
 GO ?= go
 CWD ?= $(shell pwd)
