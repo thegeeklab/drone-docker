@@ -56,10 +56,7 @@ steps:
   - name: build
     image: techknowlogick/xgo:go-1.18.x
     commands:
-      - pwd
-      - ls -l
-      - ls -l /source/
-      - make deps release
+      - make release
 
   - name: executable
     image: alpine
@@ -505,6 +502,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: 657f6b34a4d07fc739e2f2b1777802c51c88ca8a62f6569c593a6368eb853ea7
+hmac: 9ee9ec07028e26d74e30bb239266b01dd105621178225d50bf2a214712d816e9
 
 ...

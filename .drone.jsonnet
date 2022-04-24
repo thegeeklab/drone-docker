@@ -72,10 +72,7 @@ local PipelineBuildBinaries = {
       name: 'build',
       image: 'techknowlogick/xgo:go-1.18.x',
       commands: [
-        'pwd',
-        'ls -l',
-        'ls -l /source/',
-        'make deps release',
+        'make release',
       ],
     },
     {
