@@ -1,6 +1,5 @@
 local PipelineTest = {
   kind: 'pipeline',
-  image_pull_secrets: ['docker_config'],
   name: 'test',
   platform: {
     os: 'linux',
@@ -61,7 +60,6 @@ local PipelineTest = {
 
 local PipelineBuildBinaries = {
   kind: 'pipeline',
-  image_pull_secrets: ['docker_config'],
   name: 'build-binaries',
   platform: {
     os: 'linux',
@@ -79,7 +77,7 @@ local PipelineBuildBinaries = {
       name: 'executable',
       image: 'alpine',
       commands: [
-        '$(find dist/ -executable -type f | grep drone-docker-linux-amd64) --help',
+        '$(find dist/ -executable -type f -iname ${DRONE_REPO_NAME}-linux-amd64) --help',
       ],
     },
     {
@@ -127,7 +125,6 @@ local PipelineBuildBinaries = {
 
 local PipelineBuildContainer(arch='amd64') = {
   kind: 'pipeline',
-  image_pull_secrets: ['docker_config'],
   name: 'build-container-' + arch,
   platform: {
     os: 'linux',
@@ -143,14 +140,11 @@ local PipelineBuildContainer(arch='amd64') = {
     },
     {
       name: 'dryrun',
-      image: 'plugins/docker:19',
+      image: 'thegeeklab/drone-docker:19',
       settings: {
-        config: { from_secret: 'docker_config' },
         dry_run: true,
         dockerfile: 'docker/Dockerfile.' + arch,
         repo: 'thegeeklab/${DRONE_REPO_NAME}',
-        username: { from_secret: 'docker_username' },
-        password: { from_secret: 'docker_password' },
       },
       depends_on: ['build'],
       when: {
@@ -159,9 +153,8 @@ local PipelineBuildContainer(arch='amd64') = {
     },
     {
       name: 'publish-dockerhub',
-      image: 'plugins/docker:19',
+      image: 'thegeeklab/drone-docker:19',
       settings: {
-        config: { from_secret: 'docker_config' },
         auto_tag: true,
         auto_tag_suffix: arch,
         dockerfile: 'docker/Dockerfile.' + arch,
@@ -176,9 +169,8 @@ local PipelineBuildContainer(arch='amd64') = {
     },
     {
       name: 'publish-quay',
-      image: 'plugins/docker:19',
+      image: 'thegeeklab/drone-docker:19',
       settings: {
-        config: { from_secret: 'docker_config' },
         auto_tag: true,
         auto_tag_suffix: arch,
         dockerfile: 'docker/Dockerfile.' + arch,
@@ -258,7 +250,6 @@ local PipelineDocs = {
 
 local PipelineNotifications = {
   kind: 'pipeline',
-  image_pull_secrets: ['docker_config'],
   name: 'notifications',
   platform: {
     os: 'linux',

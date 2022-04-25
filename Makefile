@@ -43,7 +43,7 @@ all: clean build
 
 .PHONY: clean
 clean:
-	go clean -i ./...
+	$(GO) clean -i ./...
 	rm -rf $(DIST_DIRS)
 
 .PHONY: fmt
@@ -59,24 +59,24 @@ lint: golangci-lint
 
 .PHONY: generate
 generate:
-	go generate $(GENERATE)
+	$(GO) generate $(GENERATE)
 
 .PHONY: test
 test:
-	go test -v -coverprofile coverage.out $(PACKAGES)
+	$(GO) test -v -coverprofile coverage.out $(PACKAGES)
 
 .PHONY: build
 build: $(DIST)/$(EXECUTABLE)
 
 $(DIST)/$(EXECUTABLE): $(SOURCES)
-	go build -v -tags '$(TAGS)' -ldflags '-extldflags "-static" $(LDFLAGS)' -o $@ ./cmd/$(EXECUTABLE)
+	$(GO) build -v -tags '$(TAGS)' -ldflags '-extldflags "-static" $(LDFLAGS)' -o $@ ./cmd/$(EXECUTABLE)
 
 $(DIST_DIRS):
 	mkdir -p $(DIST_DIRS)
 
 .PHONY: xgo
 xgo: | $(DIST_DIRS)
-	go run $(XGO_PACKAGE) -go $(XGO_VERSION) -v -ldflags '-extldflags "-static" $(LDFLAGS)' -tags '$(TAGS)' -targets '$(XGO_TARGETS)' -out $(EXECUTABLE) --pkg cmd/$(EXECUTABLE) .
+	$(GO) run $(XGO_PACKAGE) -go $(XGO_VERSION) -v -ldflags '-extldflags "-static" $(LDFLAGS)' -tags '$(TAGS)' -targets '$(XGO_TARGETS)' -out $(EXECUTABLE) --pkg cmd/$(EXECUTABLE) .
 	cp /build/* $(CWD)/$(DIST)
 	ls -l $(CWD)/$(DIST)
 

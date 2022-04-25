@@ -35,9 +35,6 @@ volumes:
   - name: godeps
     temp: {}
 
-image_pull_secrets:
-  - docker_config
-
 trigger:
   ref:
     - refs/heads/main
@@ -61,7 +58,7 @@ steps:
   - name: executable
     image: alpine
     commands:
-      - $(find dist/ -executable -type f | grep drone-docker-linux-amd64) --help
+      - $(find dist/ -executable -type f -iname ${DRONE_REPO_NAME}-linux-amd64) --help
 
   - name: changelog-generate
     image: thegeeklab/git-chglog
@@ -89,9 +86,6 @@ steps:
       ref:
         - refs/tags/**
 
-image_pull_secrets:
-  - docker_config
-
 trigger:
   ref:
     - refs/heads/main
@@ -116,17 +110,11 @@ steps:
       - make build
 
   - name: dryrun
-    image: plugins/docker:19
+    image: thegeeklab/drone-docker:19
     settings:
-      config:
-        from_secret: docker_config
       dockerfile: docker/Dockerfile.amd64
       dry_run: true
-      password:
-        from_secret: docker_password
       repo: thegeeklab/${DRONE_REPO_NAME}
-      username:
-        from_secret: docker_username
     when:
       ref:
         - refs/pull/**
@@ -134,12 +122,10 @@ steps:
       - build
 
   - name: publish-dockerhub
-    image: plugins/docker:19
+    image: thegeeklab/drone-docker:19
     settings:
       auto_tag: true
       auto_tag_suffix: amd64
-      config:
-        from_secret: docker_config
       dockerfile: docker/Dockerfile.amd64
       password:
         from_secret: docker_password
@@ -154,12 +140,10 @@ steps:
       - dryrun
 
   - name: publish-quay
-    image: plugins/docker:19
+    image: thegeeklab/drone-docker:19
     settings:
       auto_tag: true
       auto_tag_suffix: amd64
-      config:
-        from_secret: docker_config
       dockerfile: docker/Dockerfile.amd64
       password:
         from_secret: quay_password
@@ -173,9 +157,6 @@ steps:
         - refs/tags/**
     depends_on:
       - dryrun
-
-image_pull_secrets:
-  - docker_config
 
 trigger:
   ref:
@@ -201,17 +182,11 @@ steps:
       - make build
 
   - name: dryrun
-    image: plugins/docker:19
+    image: thegeeklab/drone-docker:19
     settings:
-      config:
-        from_secret: docker_config
       dockerfile: docker/Dockerfile.arm64
       dry_run: true
-      password:
-        from_secret: docker_password
       repo: thegeeklab/${DRONE_REPO_NAME}
-      username:
-        from_secret: docker_username
     when:
       ref:
         - refs/pull/**
@@ -219,12 +194,10 @@ steps:
       - build
 
   - name: publish-dockerhub
-    image: plugins/docker:19
+    image: thegeeklab/drone-docker:19
     settings:
       auto_tag: true
       auto_tag_suffix: arm64
-      config:
-        from_secret: docker_config
       dockerfile: docker/Dockerfile.arm64
       password:
         from_secret: docker_password
@@ -239,12 +212,10 @@ steps:
       - dryrun
 
   - name: publish-quay
-    image: plugins/docker:19
+    image: thegeeklab/drone-docker:19
     settings:
       auto_tag: true
       auto_tag_suffix: arm64
-      config:
-        from_secret: docker_config
       dockerfile: docker/Dockerfile.arm64
       password:
         from_secret: quay_password
@@ -258,9 +229,6 @@ steps:
         - refs/tags/**
     depends_on:
       - dryrun
-
-image_pull_secrets:
-  - docker_config
 
 trigger:
   ref:
@@ -286,17 +254,11 @@ steps:
       - make build
 
   - name: dryrun
-    image: plugins/docker:19
+    image: thegeeklab/drone-docker:19
     settings:
-      config:
-        from_secret: docker_config
       dockerfile: docker/Dockerfile.arm
       dry_run: true
-      password:
-        from_secret: docker_password
       repo: thegeeklab/${DRONE_REPO_NAME}
-      username:
-        from_secret: docker_username
     when:
       ref:
         - refs/pull/**
@@ -304,12 +266,10 @@ steps:
       - build
 
   - name: publish-dockerhub
-    image: plugins/docker:19
+    image: thegeeklab/drone-docker:19
     settings:
       auto_tag: true
       auto_tag_suffix: arm
-      config:
-        from_secret: docker_config
       dockerfile: docker/Dockerfile.arm
       password:
         from_secret: docker_password
@@ -324,12 +284,10 @@ steps:
       - dryrun
 
   - name: publish-quay
-    image: plugins/docker:19
+    image: thegeeklab/drone-docker:19
     settings:
       auto_tag: true
       auto_tag_suffix: arm
-      config:
-        from_secret: docker_config
       dockerfile: docker/Dockerfile.arm
       password:
         from_secret: quay_password
@@ -343,9 +301,6 @@ steps:
         - refs/tags/**
     depends_on:
       - dryrun
-
-image_pull_secrets:
-  - docker_config
 
 trigger:
   ref:
@@ -486,9 +441,6 @@ steps:
         - success
         - failure
 
-image_pull_secrets:
-  - docker_config
-
 trigger:
   ref:
     - refs/heads/main
@@ -502,6 +454,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: 9ee9ec07028e26d74e30bb239266b01dd105621178225d50bf2a214712d816e9
+hmac: 9272f58ad1c23c3d09fe6d4c61d4f6343c9fc70229826a55c45179182b6e5f49
 
 ...
