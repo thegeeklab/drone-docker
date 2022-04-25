@@ -112,15 +112,9 @@ steps:
   - name: dryrun
     image: thegeeklab/drone-docker:19
     settings:
-      config:
-        from_secret: docker_config
       dockerfile: docker/Dockerfile.amd64
       dry_run: true
-      password:
-        from_secret: docker_password
       repo: thegeeklab/${DRONE_REPO_NAME}
-      username:
-        from_secret: docker_username
     when:
       ref:
         - refs/pull/**
@@ -132,8 +126,6 @@ steps:
     settings:
       auto_tag: true
       auto_tag_suffix: amd64
-      config:
-        from_secret: docker_config
       dockerfile: docker/Dockerfile.amd64
       password:
         from_secret: docker_password
@@ -152,8 +144,6 @@ steps:
     settings:
       auto_tag: true
       auto_tag_suffix: amd64
-      config:
-        from_secret: docker_config
       dockerfile: docker/Dockerfile.amd64
       password:
         from_secret: quay_password
@@ -194,15 +184,9 @@ steps:
   - name: dryrun
     image: thegeeklab/drone-docker:19
     settings:
-      config:
-        from_secret: docker_config
       dockerfile: docker/Dockerfile.arm64
       dry_run: true
-      password:
-        from_secret: docker_password
       repo: thegeeklab/${DRONE_REPO_NAME}
-      username:
-        from_secret: docker_username
     when:
       ref:
         - refs/pull/**
@@ -214,8 +198,6 @@ steps:
     settings:
       auto_tag: true
       auto_tag_suffix: arm64
-      config:
-        from_secret: docker_config
       dockerfile: docker/Dockerfile.arm64
       password:
         from_secret: docker_password
@@ -234,8 +216,6 @@ steps:
     settings:
       auto_tag: true
       auto_tag_suffix: arm64
-      config:
-        from_secret: docker_config
       dockerfile: docker/Dockerfile.arm64
       password:
         from_secret: quay_password
@@ -276,15 +256,9 @@ steps:
   - name: dryrun
     image: thegeeklab/drone-docker:19
     settings:
-      config:
-        from_secret: docker_config
       dockerfile: docker/Dockerfile.arm
       dry_run: true
-      password:
-        from_secret: docker_password
       repo: thegeeklab/${DRONE_REPO_NAME}
-      username:
-        from_secret: docker_username
     when:
       ref:
         - refs/pull/**
@@ -296,8 +270,6 @@ steps:
     settings:
       auto_tag: true
       auto_tag_suffix: arm
-      config:
-        from_secret: docker_config
       dockerfile: docker/Dockerfile.arm
       password:
         from_secret: docker_password
@@ -316,8 +288,6 @@ steps:
     settings:
       auto_tag: true
       auto_tag_suffix: arm
-      config:
-        from_secret: docker_config
       dockerfile: docker/Dockerfile.arm
       password:
         from_secret: quay_password
@@ -484,6 +454,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: ae16daf0c76d8f0a7442059ccae4020d7c9861884dd1068d2d1973180d39ea42
+hmac: 9272f58ad1c23c3d09fe6d4c61d4f6343c9fc70229826a55c45179182b6e5f49
 
 ...
