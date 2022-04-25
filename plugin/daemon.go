@@ -22,6 +22,6 @@ func (p Plugin) startDaemon() {
 	}
 	go func() {
 		trace(cmd)
-		cmd.Run()
+		_ = cmd.Run()
 	}()
 }

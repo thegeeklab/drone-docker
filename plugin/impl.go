@@ -196,7 +196,7 @@ func (p *Plugin) Execute() error {
 			fmt.Printf("Could not prune system containers. Ignoring...\n")
 		case err != nil && isCommandRmi(cmd.Args):
 			fmt.Printf("Could not remove image %s. Ignoring...\n", cmd.Args[2])
-		default:
+		case err != nil:
 			return err
 		}
 	}
