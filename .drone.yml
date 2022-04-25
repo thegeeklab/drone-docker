@@ -110,7 +110,7 @@ steps:
       - make build
 
   - name: dryrun
-    image: plugins/docker:19
+    image: thegeeklab/drone-docker:19
     settings:
       config:
         from_secret: docker_config
@@ -128,7 +128,7 @@ steps:
       - build
 
   - name: publish-dockerhub
-    image: plugins/docker:19
+    image: thegeeklab/drone-docker:19
     settings:
       auto_tag: true
       auto_tag_suffix: amd64
@@ -148,7 +148,7 @@ steps:
       - dryrun
 
   - name: publish-quay
-    image: plugins/docker:19
+    image: thegeeklab/drone-docker:19
     settings:
       auto_tag: true
       auto_tag_suffix: amd64
@@ -192,7 +192,7 @@ steps:
       - make build
 
   - name: dryrun
-    image: plugins/docker:19
+    image: thegeeklab/drone-docker:19
     settings:
       config:
         from_secret: docker_config
@@ -210,7 +210,7 @@ steps:
       - build
 
   - name: publish-dockerhub
-    image: plugins/docker:19
+    image: thegeeklab/drone-docker:19
     settings:
       auto_tag: true
       auto_tag_suffix: arm64
@@ -230,7 +230,7 @@ steps:
       - dryrun
 
   - name: publish-quay
-    image: plugins/docker:19
+    image: thegeeklab/drone-docker:19
     settings:
       auto_tag: true
       auto_tag_suffix: arm64
@@ -274,7 +274,7 @@ steps:
       - make build
 
   - name: dryrun
-    image: plugins/docker:19
+    image: thegeeklab/drone-docker:19
     settings:
       config:
         from_secret: docker_config
@@ -292,7 +292,7 @@ steps:
       - build
 
   - name: publish-dockerhub
-    image: plugins/docker:19
+    image: thegeeklab/drone-docker:19
     settings:
       auto_tag: true
       auto_tag_suffix: arm
@@ -312,7 +312,7 @@ steps:
       - dryrun
 
   - name: publish-quay
-    image: plugins/docker:19
+    image: thegeeklab/drone-docker:19
     settings:
       auto_tag: true
       auto_tag_suffix: arm
@@ -484,6 +484,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: 04cbe3e2b04cabcdb331f8dbba48337bb365ed4b6fd2f122eed3f4a7c81160d2
+hmac: ae16daf0c76d8f0a7442059ccae4020d7c9861884dd1068d2d1973180d39ea42
 
 ...
