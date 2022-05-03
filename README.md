@@ -18,8 +18,7 @@ The tags follow the major version of Docker, e.g. `19`, the minor and patch part
 
 ## Contributors
 
-Special thanks goes to all [contributors](https://github.com/thegeeklab/drone-docker/graphs/contributors). If you would like to contribute,
-please see the [instructions](https://github.com/thegeeklab/drone-docker/blob/main/CONTRIBUTING.md).
+Special thanks goes to all [contributors](https://github.com/thegeeklab/drone-docker/graphs/contributors). If you would like to contribute, please see the [instructions](https://github.com/thegeeklab/drone-docker/blob/main/CONTRIBUTING.md).
 
 ## License
 
