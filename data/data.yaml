@@ -1,5 +1,5 @@
 ---
-parameters:
+properties:
   dry_run:
     description: Disable docker push.
     type: bool
