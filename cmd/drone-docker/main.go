@@ -32,7 +32,7 @@ func main() {
 		Name:    "drone-docker",
 		Usage:   "build docker container with DinD",
 		Version: BuildVersion,
-		Flags:   append(settingsFlags(settings), urfave.Flags()...),
+		Flags:   append(settingsFlags(settings, urfave.FlagsPluginCategory), urfave.Flags()...),
 		Action:  run(settings),
 	}
 
