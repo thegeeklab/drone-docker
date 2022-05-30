@@ -95,7 +95,7 @@ properties:
     required: false
 
   auto_tag:
-    description: >
+    description: |
       Generate tag names automatically based on git branch and git tag. When this feature is enabled and the event type is `tag`,
       the plugin will automatically tag the image using the standard semVer convention. For example:
 
