@@ -24,7 +24,7 @@ The tags follow the major version of Docker, e.g. `19`, the minor and patch part
 ## Usage
 
 {{< hint type=important >}}
-Be aware that the this plugin requires privileged capabilities, otherwise the integrated Docker daemon is not able to start.
+Be aware that the this plugin requires [privileged](https://docs.drone.io/pipeline/docker/syntax/steps/#privileged-mode) capabilities, otherwise the integrated Docker daemon is not able to start.
 {{< /hint >}}
 
 ```YAML
@@ -34,6 +34,7 @@ name: default
 steps:
   - name: docker
     image: thegeeklab/drone-docker
+    privileged: true
     settings:
       username: octocat
       password: secure
