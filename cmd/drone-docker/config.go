@@ -16,13 +16,6 @@ func settingsFlags(settings *plugin.Settings, category string) []cli.Flag {
 			Category:    category,
 		},
 		&cli.StringFlag{
-			Name:        "remote.url",
-			EnvVars:     []string{"DRONE_REMOTE_URL"},
-			Usage:       "git remote url",
-			Destination: &settings.Build.Remote,
-			Category:    category,
-		},
-		&cli.StringFlag{
 			Name:        "daemon.mirror",
 			EnvVars:     []string{"PLUGIN_MIRROR", "DOCKER_PLUGIN_MIRROR"},
 			Usage:       "registry mirror to pull images",
@@ -198,7 +191,7 @@ func settingsFlags(settings *plugin.Settings, category string) []cli.Flag {
 		&cli.BoolFlag{
 			Name:        "compress",
 			EnvVars:     []string{"PLUGIN_COMPRESS"},
-			Usage:       "enable compression og the build context using gzip",
+			Usage:       "enable compression of the build context using gzip",
 			Value:       false,
 			Destination: &settings.Build.Compress,
 			Category:    category,
