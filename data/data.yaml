@@ -5,11 +5,6 @@ properties:
     type: bool
     required: false
 
-  drone_remote_url:
-    description: The git remote url.
-    type: string
-    required: false
-
   mirror:
     description: Use a registry mirror to pull images.
     type: string
@@ -146,7 +141,7 @@ properties:
     required: false
 
   compress:
-    description: Enable compression og the build context using gzip.
+    description: Enable compression of the build context using gzip.
     defaultValue: false
     type: bool
     required: false
