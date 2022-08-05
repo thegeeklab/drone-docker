@@ -2,7 +2,6 @@ package plugin
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -129,7 +128,7 @@ func (p *Plugin) Execute() error {
 		}
 
 		path := filepath.Join(dockerHome, "config.json")
-		err := ioutil.WriteFile(path, []byte(p.settings.Login.Config), 0o600)
+		err := os.WriteFile(path, []byte(p.settings.Login.Config), 0o600)
 		if err != nil {
 			return fmt.Errorf("error writing config.json: %s", err)
 		}
