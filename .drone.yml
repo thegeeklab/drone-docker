@@ -111,7 +111,7 @@ steps:
       - make build
 
   - name: dryrun
-    image: thegeeklab/drone-docker-buildx:20
+    image: thegeeklab/drone-docker:20
     settings:
       dockerfile: docker/Dockerfile.amd64
       dry_run: true
@@ -123,7 +123,7 @@ steps:
       - build
 
   - name: publish-dockerhub
-    image: thegeeklab/drone-docker-buildx:20
+    image: thegeeklab/drone-docker:20
     settings:
       auto_tag: true
       auto_tag_suffix: amd64
@@ -141,7 +141,7 @@ steps:
       - dryrun
 
   - name: publish-quay
-    image: thegeeklab/drone-docker-buildx:20
+    image: thegeeklab/drone-docker:20
     settings:
       auto_tag: true
       auto_tag_suffix: amd64
@@ -183,7 +183,7 @@ steps:
       - make build
 
   - name: dryrun
-    image: thegeeklab/drone-docker-buildx:20
+    image: thegeeklab/drone-docker:20
     settings:
       dockerfile: docker/Dockerfile.arm64
       dry_run: true
@@ -195,7 +195,7 @@ steps:
       - build
 
   - name: publish-dockerhub
-    image: thegeeklab/drone-docker-buildx:20
+    image: thegeeklab/drone-docker:20
     settings:
       auto_tag: true
       auto_tag_suffix: arm64
@@ -213,7 +213,7 @@ steps:
       - dryrun
 
   - name: publish-quay
-    image: thegeeklab/drone-docker-buildx:20
+    image: thegeeklab/drone-docker:20
     settings:
       auto_tag: true
       auto_tag_suffix: arm64
@@ -381,6 +381,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: d5e531315733cbc971bcc79e4e29b24b150844dd7c4d6b4e10321bf8d5a68b19
+hmac: 2678272f471334df973c0b9c0e8886dcf0941f5581b460b116fb48c88e7a14ba
 
 ...
