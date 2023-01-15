@@ -1,5 +1,7 @@
 # drone-docker
 
+> DISCONTINUED: This image is no longer maintained and will be removed in the future.
+
 Drone plugin to build multiarch Docker images
 
 [![Build Status](https://img.shields.io/drone/build/thegeeklab/drone-docker?logo=drone&server=https%3A%2F%2Fdrone.thegeeklab.de)](https://drone.thegeeklab.de/thegeeklab/drone-docker)
